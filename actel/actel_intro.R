@@ -1,4 +1,11 @@
-library("actel")
+# usefule packages
+#install.packages("actel")
+#install.packages("patchwork")
+#install.packages("ggsn")
+#install.packages("remotes")
+#remotes::install_github("YuriNiella/RSP", build_opts = c("--no-resave-data", "--no-manual"), build_vignettes = T)
+library(actel)
+library(RSP)
 
 # The first thing you want to do when you try out a package is...
 # explore the documentation!
@@ -92,7 +99,7 @@ head(spatial)
 #
 # NOTE: If necessary, change the 'path' to the folder where you have the shape file.
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-water <- loadShape(path = "..", spatial = spatial,
+water <- loadShape(path = "../actel", spatial = spatial,
 									 shape = "stora_shape_epsg32632.shp", size = 10,
 									 coord.x = "x", coord.y = "y")
 
@@ -116,6 +123,9 @@ dist.mat
 # Let's go ahead and try running migration() and residency() on this dataset.
 mig.results <- migration(tz = 'Europe/Copenhagen', report = TRUE)
 
+names(mig.results)
+mig.results$overall.CJS
+
 # Now try copy-pasting the next five lines as a block and run it all at once.
 res.results <- residency(tz = 'Europe/Copenhagen', report = TRUE)
 comment
@@ -126,11 +136,13 @@ y
 # R will know to answer each of the questions that pop up during the analysis
 # with the lines you copy-pasted together with your code!
 
-# explore the reports to see what's new!
+names(res.results)
 
+# explore the reports to see what's new!
 
 ###########################################################
 ## For home: Transforming the results
 
 # Try some of the stuff in this manual page!
 vignette("f-0_post_functions", "actel")
+browseVignettes("actel")
